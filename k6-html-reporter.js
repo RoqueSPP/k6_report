@@ -1,28 +1,6 @@
 // ─── k6-html-reporter.js ─────────────────────────────────────────────────────
 // Uso no seu script k6:
 //
-//   import { htmlReport, htmlReportWithOptions } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
-//
-//   export function generateReport(data) {
-//     return {
-//       "relatorio.html": htmlReport(data),
-//     };
-//   }
-//
-// Ou com opções personalizadas:
-//
-//   export function generateReport(data) {
-//     return {
-//       "relatorio.html": htmlReportWithOptions(data, {
-//         title:    "Meu Teste de Carga",
-//         envName:  "Produção",
-//         vus:      50,
-//         duration: "2m",
-//       }),
-//     };
-//   }
-// ─────────────────────────────────────────────────────────────────────────────
-
 // ─── Helpers de formatação compatíveis com o runtime do k6 (goja) ────────────
 // O k6 não suporta toLocaleString com locale ("pt-BR") — causa RangeError.
 // Estas funções substituem toLocaleString em todo o arquivo.
@@ -154,6 +132,18 @@ const REPORT_CSS = `
   td{padding:8px 12px;border-bottom:1px solid #f1f5f9}
   tr:last-child td{border-bottom:none}
   @media(max-width:600px){.header{padding:1.5rem 1rem}.score-bar{flex-direction:column}.card .value{font-size:1.5rem}}
+
+.chart-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+  gap:1rem;
+}
+.chart-card{
+  background:#fff;border-radius:12px;padding:1rem;box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+.chart-title{font-size:.9rem;font-weight:600;margin-bottom:1rem;color:#1e293b}
+.chart-container{position:relative;height:320px}
+
 `;
 
 const GLOSSARY_ITEMS = [
@@ -450,7 +440,7 @@ export function htmlReport(data) {
 
 /**
  * Gera o relatório HTML com opções personalizadas.
- * @param {object} data    - Objeto `data` recebido no generateReport
+ * @param {object} data    - Objeto `data` recebido no handleSummary
  * @param {object} options - { title, envName, vus, duration }
  * Uso: "arquivo.html": htmlReportWithOptions(data, { title: "...", envName: "Prod" })
  */

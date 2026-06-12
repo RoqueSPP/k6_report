@@ -26,7 +26,7 @@ import {
 Utilize a função `generateReport()` para gerar um arquivo HTML ao final da execução:
 
 ```javascript
-import { htmlReport } from "https://raw.githubusercontent.com/RoqueSPP/k6_report/refs/heads/master/k6-html-reporter.jss";
+import { htmlReport } from "https://raw.githubusercontent.com/RoqueSPP/k6_report/refs/heads/master/k6-html-reporter.js";
 
 export function generateReport(data) {
   return {

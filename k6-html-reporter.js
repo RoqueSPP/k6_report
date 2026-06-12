@@ -3,7 +3,7 @@
 //
 //   import { htmlReport, htmlReportWithOptions } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 //
-//   export function handleSummary(data) {
+//   export function generateReport(data) {
 //     return {
 //       "relatorio.html": htmlReport(data),
 //     };
@@ -11,7 +11,7 @@
 //
 // Ou com opções personalizadas:
 //
-//   export function handleSummary(data) {
+//   export function generateReport(data) {
 //     return {
 //       "relatorio.html": htmlReportWithOptions(data, {
 //         title:    "Meu Teste de Carga",
@@ -450,7 +450,7 @@ export function htmlReport(data) {
 
 /**
  * Gera o relatório HTML com opções personalizadas.
- * @param {object} data    - Objeto `data` recebido no handleSummary
+ * @param {object} data    - Objeto `data` recebido no generateReport
  * @param {object} options - { title, envName, vus, duration }
  * Uso: "arquivo.html": htmlReportWithOptions(data, { title: "...", envName: "Prod" })
  */

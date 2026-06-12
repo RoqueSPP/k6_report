@@ -16,7 +16,7 @@ Adicione o import abaixo no início do seu script:
 import {
   htmlReport,
   htmlReportWithOptions
-} from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+} from "https://raw.githubusercontent.com/RoqueSPP/k6_report/refs/heads/master/k6-html-reporter.js";
 ```
 
 ---
@@ -26,7 +26,7 @@ import {
 Utilize a função `handleSummary()` para gerar um arquivo HTML ao final da execução:
 
 ```javascript
-import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import { htmlReport } from "https://raw.githubusercontent.com/RoqueSPP/k6_report/refs/heads/master/k6-html-reporter.jss";
 
 export function handleSummary(data) {
   return {
@@ -58,7 +58,7 @@ Você pode customizar informações exibidas no relatório:
 ```javascript
 import {
   htmlReportWithOptions
-} from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+} from "https://raw.githubusercontent.com/RoqueSPP/k6_report/refs/heads/master/k6-html-reporter.js";
 
 export function handleSummary(data) {
   return {
@@ -88,7 +88,7 @@ export function handleSummary(data) {
 ```javascript
 import http from "k6/http";
 import { sleep } from "k6";
-import { htmlReportWithOptions } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import { htmlReportWithOptions } from "https://raw.githubusercontent.com/RoqueSPP/k6_report/refs/heads/master/k6-html-reporter.js";
 
 export const options = {
   vus: 10,

@@ -1,7 +1,7 @@
 // ─── k6-html-reporter.js ─────────────────────────────────────────────────────
 // Uso no seu script k6:
 //
-//   import { htmlReport, htmlReportWithOptions } from "./k6-html-reporter.js";
+//   import { htmlReport, htmlReportWithOptions } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 //
 //   export function handleSummary(data) {
 //     return {

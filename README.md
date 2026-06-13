@@ -152,8 +152,3 @@ O arquivo conterá:
 
 ---
 
-## Referência
-
-Projeto oficial do reporter:
-
-https://github.com/benc-uk/k6-reporter

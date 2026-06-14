@@ -26,34 +26,6 @@
 // ─── Helpers de formatação compatíveis com o runtime do k6 (goja) ────────────
 // O k6 não suporta toLocaleString com locale ("pt-BR") — causa RangeError.
 // Estas funções substituem toLocaleString em todo o arquivo.
-// ─── k6-html-reporter.js ─────────────────────────────────────────────────────
-// Uso no seu script k6:
-//
-//   import { htmlReport, htmlReportWithOptions } from "./k6-html-reporter.js";
-//
-//   export function handleSummary(data) {
-//     return {
-//       "relatorio.html": htmlReport(data),
-//     };
-//   }
-//
-// Ou com opções personalizadas:
-//
-//   export function handleSummary(data) {
-//     return {
-//       "relatorio.html": htmlReportWithOptions(data, {
-//         title:    "Meu Teste de Carga",
-//         envName:  "Produção",
-//         vus:      50,
-//         duration: "2m",
-//       }),
-//     };
-//   }
-// ─────────────────────────────────────────────────────────────────────────────
-
-// ─── Helpers de formatação compatíveis com o runtime do k6 (goja) ────────────
-// O k6 não suporta toLocaleString com locale ("pt-BR") — causa RangeError.
-// Estas funções substituem toLocaleString em todo o arquivo.
 
 /** Formata número inteiro com separador de milhar (ponto) */
 function fmtInt(n) {

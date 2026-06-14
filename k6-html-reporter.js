@@ -26,6 +26,34 @@
 // ─── Helpers de formatação compatíveis com o runtime do k6 (goja) ────────────
 // O k6 não suporta toLocaleString com locale ("pt-BR") — causa RangeError.
 // Estas funções substituem toLocaleString em todo o arquivo.
+// ─── k6-html-reporter.js ─────────────────────────────────────────────────────
+// Uso no seu script k6:
+//
+//   import { htmlReport, htmlReportWithOptions } from "./k6-html-reporter.js";
+//
+//   export function handleSummary(data) {
+//     return {
+//       "relatorio.html": htmlReport(data),
+//     };
+//   }
+//
+// Ou com opções personalizadas:
+//
+//   export function handleSummary(data) {
+//     return {
+//       "relatorio.html": htmlReportWithOptions(data, {
+//         title:    "Meu Teste de Carga",
+//         envName:  "Produção",
+//         vus:      50,
+//         duration: "2m",
+//       }),
+//     };
+//   }
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─── Helpers de formatação compatíveis com o runtime do k6 (goja) ────────────
+// O k6 não suporta toLocaleString com locale ("pt-BR") — causa RangeError.
+// Estas funções substituem toLocaleString em todo o arquivo.
 
 /** Formata número inteiro com separador de milhar (ponto) */
 function fmtInt(n) {
@@ -154,18 +182,6 @@ const REPORT_CSS = `
   td{padding:8px 12px;border-bottom:1px solid #f1f5f9}
   tr:last-child td{border-bottom:none}
   @media(max-width:600px){.header{padding:1.5rem 1rem}.score-bar{flex-direction:column}.card .value{font-size:1.5rem}}
-
-.chart-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-  gap:1rem;
-}
-.chart-card{
-  background:#fff;border-radius:12px;padding:1rem;box-shadow:0 1px 4px rgba(0,0,0,.08);
-}
-.chart-title{font-size:.9rem;font-weight:600;margin-bottom:1rem;color:#1e293b}
-.chart-container{position:relative;height:320px}
-
 `;
 
 const GLOSSARY_ITEMS = [
@@ -307,53 +323,6 @@ function buildAllMetricsSection(data) {
   </div>`;
 }
 
-
-function buildChartsSection(m) {
-return `
-<div class="section">
-<h3>📊 Dashboard de Performance</h3>
-
-<div class="chart-grid">
-<div class="chart-card">
-<div class="chart-title">📈 Latência</div>
-<div class="chart-container"><canvas id="latencyChart"></canvas></div>
-</div>
-
-<div class="chart-card">
-<div class="chart-title">🥧 Sucesso x Falha</div>
-<div class="chart-container"><canvas id="successChart"></canvas></div>
-</div>
-
-<div class="chart-card">
-<div class="chart-title">⏱️ Breakdown</div>
-<div class="chart-container"><canvas id="timingChart"></canvas></div>
-</div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-new Chart(document.getElementById('latencyChart'),{
-type:'bar',
-data:{labels:['Média','P90','P95','P99'],datasets:[{data:[${m.avgDur},${m.p90},${m.p95},${m.p99}]}]},
-options:{responsive:true,maintainAspectRatio:false}
-});
-
-new Chart(document.getElementById('successChart'),{
-type:'doughnut',
-data:{labels:['Sucesso','Falha'],datasets:[{data:[${m.successRate},${m.failRate}]}]},
-options:{responsive:true,maintainAspectRatio:false}
-});
-
-new Chart(document.getElementById('timingChart'),{
-type:'bar',
-data:{labels:['Waiting','Sending','Receiving'],datasets:[{data:[${m.avgWait},${m.avgSend},${m.avgRecv}]}]},
-options:{responsive:true,maintainAspectRatio:false}
-});
-</script>
-</div>`;
-}
-
-
 // ─── Relatório principal ──────────────────────────────────────────────────────
 function buildReport(data, options = {}) {
   const {
@@ -395,7 +364,6 @@ function buildReport(data, options = {}) {
 
   const checksSection     = buildChecksSection(data);
   const allMetricsSection = buildAllMetricsSection(data);
-  const chartsSection = buildChartsSection(m);
 
   return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -464,8 +432,6 @@ function buildReport(data, options = {}) {
       <div class="hint">Pico de VUs durante o teste</div>
     </div>
   </div>
-
-  ${chartsSection}
 
   <div class="section">
     <h3>⏱️ Detalhamento dos tempos (média)</h3>

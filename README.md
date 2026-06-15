@@ -26,26 +26,26 @@ import {
 Utilize a função `generateReport()` para gerar um arquivo HTML ao final da execução:
 
 ```javascript
-//   import { htmlReport, htmlReportWithOptions } from "https://raw.githubusercontent.com/RoqueSPP/k6_report/refs/heads/master/k6-html-reporter.js";
-//
-//   export function handleSummary(data) {
-//     return {
-//       "relatorio.html": htmlReport(data),
-//     };
-//   }
-//
+   import { htmlReport, htmlReportWithOptions } from "https://raw.githubusercontent.com/RoqueSPP/k6_report/refs/heads/master/k6-html-reporter.js";
+
+   export function handleSummary(data) {
+     return {
+       "relatorio.html": htmlReport(data),
+     };
+   }
+
 // Ou com opções personalizadas:
-//
-//   export function handleSummary(data) {
-//     return {
-//       "relatorio.html": htmlReportWithOptions(data, {
-//         title:    "Meu Teste de Carga",
-//         envName:  "Produção",
-//         vus:      50,
-//         duration: "2m",
-//       }),
-//     };
-//   }
+
+   export function handleSummary(data) {
+     return {
+       "relatorio.html": htmlReportWithOptions(data, {
+         title:    "Meu Teste de Carga",
+         envName:  "Produção",
+         vus:      50,
+         duration: "2m",
+       }),
+     };
+  }
 ```
 
 ### Executando o teste

@@ -409,13 +409,6 @@ function buildReport(data, options = {}) {
     <h3>⏱️ Detalhamento dos tempos (média)</h3>
     <div class="timing-bars">${timingRows}</div>
   </div>
-
-  <div class="section"><h3>📈 Tempo de resposta ao longo do teste</h3><div class="chart-wrap"><canvas id="chartDur"></canvas></div></div>
-
-<div class="footer">Gerado por K6 Collection Tester &bull; 17/06/2026</div>
-<script>
-new Chart(document.getElementById('chartDur'),{type:'line',data:{labels:["0:33:11","0:33:13","0:33:14","0:33:14","0:33:15","0:33:16","0:33:17","0:33:18","0:33:19","0:33:20","0:33:21","0:33:22","0:33:23","0:33:24","0:33:25","0:33:25","0:33:25","0:33:26","0:33:27","0:33:27","0:33:27","0:33:28","0:33:28","0:33:29","0:33:29","0:33:30"],datasets:[{label:'Tempo de resposta (ms)',data:[1071,1135,419,422,423,418,421,421,421,421,419,385,455,421,421,390,420,410,523,384,443,421,391,509,508,435],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.08)',borderWidth:1.5,pointRadius:0,fill:true,tension:0.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{display:true,ticks:{maxTicksLimit:8,font:{size:11}}},y:{display:true,ticks:{font:{size:11}},title:{display:true,text:'ms'}}}}});
-</script>
   <div class="section">
     <h3>📊 Estatísticas detalhadas</h3>
     <table>

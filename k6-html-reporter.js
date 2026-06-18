@@ -52,11 +52,11 @@ function extractMetrics(data) {
 }
 function scoreOf(failRate, p95, totalReqs) {
   if (!totalReqs || totalReqs === 0)
-    return { color: "#94a3b8", label: "SEM DADOS", desc: "ℹ️ Nenhuma requisição registrada." };
+    return { color: "#6b7494", label: "SEM DADOS", desc: "ℹ️ Nenhuma requisição registrada." };
   const f = parseFloat(failRate), p = parseFloat(p95);
-  if (f < 1  && p < 500)  return { color: "#16a34a", label: "EXCELENTE", desc: "✅ O sistema se comportou muito bem sob carga." };
-  if (f < 5  && p < 2000) return { color: "#ca8a04", label: "ATENÇÃO",   desc: "⚠️ Algumas falhas detectadas — revisar capacidade." };
-  return                          { color: "#dc2626", label: "CRÍTICO",   desc: "🚨 Alta taxa de falhas — atenção urgente necessária." };
+  if (f < 1  && p < 500)  return { color: "#3ecf8e", label: "EXCELENTE", desc: "✅ O sistema se comportou muito bem sob carga." };
+  if (f < 5  && p < 2000) return { color: "#f6c90e", label: "ATENÇÃO",   desc: "⚠️ Algumas falhas detectadas — revisar capacidade." };
+  return                          { color: "#f56565", label: "CRÍTICO",   desc: "🚨 Alta taxa de falhas — atenção urgente necessária." };
 }
 function durClass(v) {
   const n = typeof v === "number" ? v : parseFloat(v);
@@ -64,42 +64,43 @@ function durClass(v) {
 }
 const REPORT_CSS = `
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.6}
-  .header{background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);color:#fff;padding:2rem 2.5rem}
-  .header h1{font-size:1.5rem;font-weight:700;margin-bottom:.4rem}
-  .header .meta{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;font-size:.86rem;opacity:.9;margin-top:.5rem}
-  .pill{background:rgba(255,255,255,.2);border-radius:20px;padding:1px 10px;font-weight:600}
+  body{font-family:'JetBrains Mono','Segoe UI',system-ui,monospace;background:#0d0f14;color:#e2e6f0;line-height:1.6}
+  .header{background:linear-gradient(135deg,#13161e 0%,#1b1f2b 100%);border-bottom:1px solid #252a38;color:#e2e6f0;padding:2rem 2.5rem}
+  .header h1{font-size:1.5rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.3px}
+  .header .meta{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;font-size:.86rem;color:#6b7494;margin-top:.5rem}
+  .pill{background:rgba(91,110,245,.2);border-radius:20px;padding:1px 10px;font-weight:600;color:#8899ff}
   .container{max-width:1150px;margin:0 auto;padding:1.5rem}
-  .score-bar{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:1.5rem 2rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
-  .score-circle{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;color:#fff;flex-shrink:0;text-align:center;line-height:1.3}
-  .score-info h2{font-size:1.05rem;margin-bottom:.3rem}
-  .score-info p{color:#64748b;font-size:.88rem;max-width:640px}
+  .score-bar{background:#13161e;border-radius:12px;border:1px solid #252a38;padding:1.5rem 2rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+  .score-circle{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;color:#0d0f14;flex-shrink:0;text-align:center;line-height:1.3}
+  .score-info h2{font-size:1.05rem;margin-bottom:.3rem;color:#e2e6f0}
+  .score-info p{color:#6b7494;font-size:.88rem;max-width:640px}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1rem;margin-bottom:1.5rem}
-  .card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:1.25rem 1.5rem}
-  .card .label{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8;margin-bottom:.3rem}
-  .card .value{font-size:1.9rem;font-weight:700;line-height:1.1}
-  .card .unit{font-size:.8rem;color:#64748b;margin-top:.1rem}
-  .card .hint{font-size:.74rem;color:#94a3b8;margin-top:.4rem;border-top:1px solid #f1f5f9;padding-top:.4rem}
-  .green{color:#16a34a}.red{color:#dc2626}.amber{color:#ca8a04}
-  .section{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);padding:1.5rem;margin-bottom:1.5rem}
-  .section h3{font-size:.93rem;font-weight:600;margin-bottom:1rem;color:#1e293b;border-bottom:1px solid #f1f5f9;padding-bottom:.5rem}
+  .card{background:#13161e;border-radius:12px;border:1px solid #252a38;padding:1.25rem 1.5rem}
+  .card .label{font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:#6b7494;margin-bottom:.3rem}
+  .card .value{font-size:1.9rem;font-weight:700;line-height:1.1;color:#e2e6f0}
+  .card .unit{font-size:.8rem;color:#6b7494;margin-top:.1rem}
+  .card .hint{font-size:.74rem;color:#6b7494;margin-top:.4rem;border-top:1px solid #252a38;padding-top:.4rem}
+  .green{color:#3ecf8e}.red{color:#f56565}.amber{color:#f6c90e}
+  .section{background:#13161e;border-radius:12px;border:1px solid #252a38;padding:1.5rem;margin-bottom:1.5rem}
+  .section h3{font-size:.93rem;font-weight:600;margin-bottom:1rem;color:#e2e6f0;border-bottom:1px solid #252a38;padding-bottom:.5rem}
   .timing-bars{display:grid;gap:.55rem}
   .tbar-row{display:flex;align-items:center;gap:.75rem;font-size:.84rem}
-  .tbar-label{width:220px;color:#475569;flex-shrink:0}
-  .tbar-track{flex:1;height:9px;background:#f1f5f9;border-radius:6px;overflow:hidden}
-  .tbar-fill{height:100%;border-radius:6px;background:#2563eb}
-  .tbar-val{width:68px;text-align:right;font-weight:600;color:#1e293b}
+  .tbar-label{width:220px;color:#6b7494;flex-shrink:0}
+  .tbar-track{flex:1;height:9px;background:#1b1f2b;border-radius:6px;overflow:hidden}
+  .tbar-fill{height:100%;border-radius:6px;background:#5b6ef5}
+  .tbar-val{width:68px;text-align:right;font-weight:600;color:#e2e6f0}
   .glossary{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:.75rem}
-  .gitem{background:#f8fafc;border-radius:8px;padding:.75rem 1rem;border-left:3px solid #2563eb}
-  .gitem .gkey{font-family:monospace;font-size:.79rem;font-weight:600;color:#1d4ed8;margin-bottom:2px}
-  .gitem .gval{font-size:.79rem;color:#475569;line-height:1.4}
+  .gitem{background:#1b1f2b;border-radius:8px;padding:.75rem 1rem;border-left:3px solid #5b6ef5}
+  .gitem .gkey{font-family:monospace;font-size:.79rem;font-weight:600;color:#8899ff;margin-bottom:2px}
+  .gitem .gval{font-size:.79rem;color:#6b7494;line-height:1.4}
   .checks-bar{display:flex;height:10px;border-radius:6px;overflow:hidden;margin:.5rem 0}
-  .checks-pass{background:#16a34a}.checks-fail{background:#dc2626}
-  .footer{text-align:center;padding:1.5rem;color:#94a3b8;font-size:.78rem}
+  .checks-pass{background:#3ecf8e}.checks-fail{background:#f56565}
+  .footer{text-align:center;padding:1.5rem;color:#6b7494;font-size:.78rem;border-top:1px solid #252a38}
   table{width:100%;border-collapse:collapse;font-size:.87rem}
-  th{text-align:left;padding:8px 12px;background:#f8fafc;color:#64748b;font-weight:600;border-bottom:1px solid #e2e8f0}
-  td{padding:8px 12px;border-bottom:1px solid #f1f5f9}
+  th{text-align:left;padding:8px 12px;background:#1b1f2b;color:#6b7494;font-weight:600;border-bottom:1px solid #252a38;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+  td{padding:8px 12px;border-bottom:1px solid #1b1f2b;color:#e2e6f0}
   tr:last-child td{border-bottom:none}
+  tr:hover td{background:#1b1f2b}
   .chart-wrap{position:relative;width:100%;height:220px}
   .chart-wrap canvas{width:100%!important;height:100%!important}
   @media(max-width:600px){.header{padding:1.5rem 1rem}.score-bar{flex-direction:column}.card .value{font-size:1.5rem}}
@@ -141,7 +142,7 @@ function buildChecksSection(data) {
   <div class="section">
     <h3>✅ Checks</h3>
     <div style="margin-bottom:1rem">
-      <div style="display:flex;justify-content:space-between;font-size:.84rem;color:#475569;margin-bottom:.3rem">
+      <div style="display:flex;justify-content:space-between;font-size:.84rem;color:#6b7494;margin-bottom:.3rem">
         <span>Passou: <strong class="green">${fmtInt(passes)} (${passPct}%)</strong></span>
         <span>Falhou: <strong class="${fails > 0 ? "red" : ""}">${fmtInt(fails)} (${failPct}%)</strong></span>
       </div>
@@ -192,7 +193,7 @@ function buildAllMetricsSection(data) {
   const renderTable = (items, title) => {
     if (!items.length) return "";
     const allHeaders = [...new Set(items.flatMap(i => i.headers))];
-    return `<h4 style="font-size:.82rem;color:#64748b;margin:1rem 0 .5rem;text-transform:uppercase;letter-spacing:.05em">${title}</h4>
+    return `<h4 style="font-size:.82rem;color:#6b7494;margin:1rem 0 .5rem;text-transform:uppercase;letter-spacing:.05em">${title}</h4>
     <div style="overflow-x:auto;margin-bottom:1rem">
     <table>
       <tr><th>Métrica</th>${allHeaders.map(h => `<th>${h}</th>`).join("")}<th>O que significa</th></tr>
@@ -200,9 +201,9 @@ function buildAllMetricsSection(data) {
         const v    = data.metrics[name].values ?? {};
         const desc = METRIC_DESC[name] ?? "—";
         return `<tr>
-          <td style="font-family:monospace;font-size:.79rem;color:#1d4ed8">${name}</td>
+          <td style="font-family:monospace;font-size:.79rem;color:#8899ff">${name}</td>
           ${allHeaders.map(k => `<td>${v[k] != null ? formatVal(v[k]) : "—"}</td>`).join("")}
-          <td style="font-size:.79rem;color:#64748b">${desc}</td>
+          <td style="font-size:.79rem;color:#6b7494">${desc}</td>
         </tr>`;
       }).join("")}
     </table></div>`;
@@ -280,8 +281,8 @@ function buildDurationChart(data) {
           labels: labels,
           datasets: [{
             data: values,
-            borderColor: '#2563eb',
-            backgroundColor: 'rgba(37,99,235,0.10)',
+            borderColor: '#5b6ef5',
+            backgroundColor: 'rgba(91,110,245,0.10)',
             borderWidth: 2,
             pointRadius: 0,
             fill: true,
@@ -292,6 +293,11 @@ function buildDurationChart(data) {
           responsive: true,
           maintainAspectRatio: false,
           plugins: { legend: { display: false }, tooltip: {
+            backgroundColor: '#1b1f2b',
+            borderColor: '#252a38',
+            borderWidth: 1,
+            titleColor: '#6b7494',
+            bodyColor: '#e2e6f0',
             callbacks: {
               title: function(items) { return fmt(items[0].label); },
               label: function(item) { return item.raw + ' ms'; }
@@ -303,17 +309,17 @@ function buildDurationChart(data) {
               ticks: {
                 maxTicksLimit: 6,
                 callback: function(v) { return fmt(v); },
-                color: '#94a3b8', font: { size: 11 }
+                color: '#6b7494', font: { size: 11 }
               },
-              grid: { color: '#f1f5f9' },
+              grid: { color: '#1b1f2b' },
               border: { display: false }
             },
             y: {
               min: 0,
               max: ${yMax},
-              title: { display: true, text: 'ms', color: '#94a3b8', font: { size: 11 } },
-              ticks: { color: '#94a3b8', font: { size: 11 } },
-              grid: { color: '#f1f5f9' },
+              title: { display: true, text: 'ms', color: '#6b7494', font: { size: 11 } },
+              ticks: { color: '#6b7494', font: { size: 11 } },
+              grid: { color: '#1b1f2b' },
               border: { display: false }
             }
           }

@@ -158,7 +158,7 @@ function buildChecksSection(data) {
   </div>`;
 }
 function buildAllMetricsSection(data) {
-  const ALL_KEYS = ["avg", "min", "med", "max", "p(90)", "p(95)", "p(99)", "count", "rate", "passes", "fails"];
+  const ALL_KEYS = ["avg", "min", "med", "max", "p(90)", "p(95)", "p(99)", "rate", "passes"];
   const METRIC_DESC = {
     "http_req_blocked":         "Tempo na fila antes de iniciar (limite de conexões simultâneas)",
     "http_req_connecting":      "Tempo para criar a conexão TCP com o servidor",

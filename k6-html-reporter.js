@@ -74,7 +74,7 @@ const REPORT_CSS = `
   .score-circle{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;color:#0d0f14;flex-shrink:0;text-align:center;line-height:1.3}
   .score-info h2{font-size:1.05rem;margin-bottom:.3rem;color:#e2e6f0}
   .score-info p{color:#6b7494;font-size:.88rem;max-width:640px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1rem;margin-bottom:1.5rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:1rem;margin-bottom:1.5rem}
   .card{background:#13161e;border-radius:12px;border:1px solid #252a38;padding:1.25rem 1.5rem}
   .card .label{font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:#6b7494;margin-bottom:.3rem}
   .card .value{font-size:1.9rem;font-weight:700;line-height:1.1;color:#e2e6f0}

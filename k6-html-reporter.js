@@ -386,7 +386,7 @@ function buildReport(data, options = {}) {
   <div class="grid">
     <div class="card"><div class="label">Total de requisições</div><div class="value">${fmtInt(m.totalReqs)}</div><div class="hint">Chamadas HTTP feitas durante o teste</div></div>
     <div class="card"><div class="label">Taxa de sucesso</div><div class="value ${parseFloat(m.failRate) < 5 ? "green" : "red"}">${m.successRate}%</div><div class="hint">Percentual de respostas 2xx</div></div>
-    <div class="card"><div class="label">Throughput</div><div class="value">${m.rps}</div><div class="unit">requisições/segundo</div><div class="hint">Vazão média durante o teste</div></div>
+    <div class="card"><div class="label">Taxa Transferência</div><div class="value">${m.rps}</div><div class="unit">requisições/segundo</div><div class="hint">Vazão média durante o teste</div></div>
     <div class="card"><div class="label">Tempo médio</div><div class="value ${durClass(m.avgDur)}">${m.avgDur} ms</div><div class="hint">Tempo típico de resposta</div></div>
     <div class="card"><div class="label">P95 — pior caso real</div><div class="value ${durClass(m.p95)}">${m.p95} ms</div><div class="hint">95% das requisições abaixo deste tempo</div></div>
     <div class="card"><div class="label">Usuários simultâneos</div><div class="value">${m.vusMax}</div><div class="hint">Pico de VUs durante o teste</div></div>
